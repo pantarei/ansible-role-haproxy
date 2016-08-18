@@ -1,0 +1,37 @@
+---
+# tasks file for hswong3i.haproxy
+
+- name: include release specific variables
+  include_vars: "{{ ansible_distribution_release }}.yml"
+  tags: hswong3i.haproxy
+
+- name: apt-add-repository
+  apt_repository:
+    repo: "{{ item.repo }}"
+    state: "{{ item.state }}"
+  with_items: "{{ _apt_repository }}"
+  tags: hswong3i.haproxy
+
+- name: apt-get install
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ _apt }}"
+  tags: hswong3i.haproxy
+
+- name: copy templates
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    #    - { src: "etc/haproxyfs/haproxyd.vol.j2", dest: "/etc/haproxyfs/haproxyd.vol", owner: "root", group: "root", mode: "0644" }
+  tags: hswong3i.haproxy
+
+- name: enable service
+  service:
+    name: "haproxy"
+    enabled: "yes"
+  tags: hswong3i.haproxy
