@@ -28,10 +28,13 @@
     mode: "{{ item.mode }}"
   with_items:
     - { src: "etc/haproxy/haproxy.cfg.j2", dest: "/etc/haproxy/haproxy.cfg", owner: "root", group: "root", mode: "0644" }
+  notify: restart haproxy
   tags: hswong3i.haproxy
 
 - name: enable service
   service:
-    name: "haproxy"
-    enabled: "yes"
+    name: "{{ item.name }}"
+    enabled: "{{ item.enabled }}"
+  with_items:
+    - { name: "haproxy", enabled: "yes" }
   tags: hswong3i.haproxy
