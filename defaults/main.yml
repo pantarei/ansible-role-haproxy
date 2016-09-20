@@ -2,10 +2,13 @@
 # defaults file for hswong3i.haproxy
 
 haproxy_chroot: "/var/lib/haproxy" 
-haproxy_socket: "/run/haproxy/admin.sock"
-haproxy_timeout: "30s"
-haproxy_user: "haproxy"
 haproxy_group: "haproxy"
+haproxy_socket: "/run/haproxy/admin.sock"
+haproxy_timeout: "60s"
+haproxy_timeout_client: "60s"
+haproxy_timeout_connect: "60s"
+haproxy_timeout_server: "60s"
+haproxy_user: "haproxy"
 
 haproxy_frontend: {
 #  "http-in": [
