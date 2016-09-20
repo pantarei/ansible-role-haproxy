@@ -4,10 +4,10 @@
 haproxy_chroot: "/var/lib/haproxy" 
 haproxy_group: "haproxy"
 haproxy_socket: "/run/haproxy/admin.sock"
-haproxy_timeout: "60s"
-haproxy_timeout_client: "60s"
-haproxy_timeout_connect: "60s"
-haproxy_timeout_server: "60s"
+haproxy_timeout: "300s"
+haproxy_timeout_client: "300s"
+haproxy_timeout_connect: "300s"
+haproxy_timeout_server: "300s"
 haproxy_user: "haproxy"
 
 haproxy_frontend: {
